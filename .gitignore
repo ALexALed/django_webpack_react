@@ -67,3 +67,4 @@ tests/.hitch
 react_webpack/static/react_webpack/dist/
 webpack-stats.json
 webpack-stats-production.json
+*.sqllite3
