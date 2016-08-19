@@ -41,7 +41,12 @@ module.exports = {
                 loader: 'babel-loader',
                 query: {
                     //specify that we will be dealing with React code
-                    presets: ['react']
+                    plugins: [
+                        'transform-runtime',
+                        'add-module-exports',
+                        'transform-decorators-legacy',
+                      ],
+                      presets: ['es2015', 'react', 'stage-1'],
                 }
             }
         ]
