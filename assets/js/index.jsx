@@ -19,6 +19,7 @@ export default class SortableSimple extends Component {
   }
 }
 
+import Breadcrumbs from './Breadcrumbs'
 
-ReactDOM.render(<SortableSimple />,
+ReactDOM.render(<Breadcrumbs crumbs={[{name: 'Hel1', 'url': 'hhh'}, {name: 'Hel2', 'url': 'hhh2'}, {name: 'Hel3', 'url': 'hhh3'}]} />,
     document.getElementById('container'))

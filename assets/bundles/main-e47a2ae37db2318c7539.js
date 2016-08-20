@@ -83,6 +83,10 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
+	var _Breadcrumbs = __webpack_require__(416);
+
+	var _Breadcrumbs2 = _interopRequireDefault(_Breadcrumbs);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var SortableSimple = function (_Component) {
@@ -133,7 +137,7 @@
 	exports.default = SortableSimple;
 
 
-	_reactDom2.default.render(_react2.default.createElement(SortableSimple, null), document.getElementById('container'));
+	_reactDom2.default.render(_react2.default.createElement(_Breadcrumbs2.default, { crumbs: [{ name: 'Hel1', 'url': 'hhh' }, { name: 'Hel2', 'url': 'hhh2' }, { name: 'Hel3', 'url': 'hhh3' }] }), document.getElementById('container'));
 	module.exports = exports['default'];
 
 /***/ },
@@ -31244,6 +31248,174 @@
 	}
 
 	module.exports = exports['default'];
+
+/***/ },
+/* 416 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = undefined;
+
+	var _getPrototypeOf = __webpack_require__(1);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(27);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(28);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(32);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(79);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(87);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _BreadcrumbNode = __webpack_require__(417);
+
+	var _BreadcrumbNode2 = _interopRequireDefault(_BreadcrumbNode);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Breadcrumbs = function (_Component) {
+	  (0, _inherits3.default)(Breadcrumbs, _Component);
+
+	  function Breadcrumbs() {
+	    (0, _classCallCheck3.default)(this, Breadcrumbs);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Breadcrumbs).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(Breadcrumbs, [{
+	    key: 'render',
+	    value: function render() {
+	      var crumbsLength = this.props.crumbs.length;
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'breadcrumbs' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'wrapper' },
+	          _react2.default.createElement(
+	            'nav',
+	            { className: 'crumbs' },
+	            this.props.crumbs.map(function (crumbItem, i) {
+	              return _react2.default.createElement(_BreadcrumbNode2.default, { key: i, name: crumbItem.name, url: crumbItem.url, last: i == crumbsLength - 1 });
+	            })
+	          )
+	        )
+	      );
+	      // {% for item in crumbs %}
+	      // {% if not forloop.last %}
+	      //     <a href="{{ item.url }}">{{ item.name }}</a><span>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;</span>
+	      // {% else %}
+	      //     <span class="last">{{ item.name }}</span>
+	      // {% endif %}
+	      // {% endfor %}
+
+	      // <div class="social">
+	      //     {% with crumbs|last as last %}
+	      //         {% socials_share last %}
+	      //     {% endwith %}
+	      // </div>
+	    }
+	  }]);
+	  return Breadcrumbs;
+	}(_react.Component);
+
+	exports.default = Breadcrumbs;
+	module.exports = exports['default'];
+
+/***/ },
+/* 417 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = undefined;
+
+	var _getPrototypeOf = __webpack_require__(1);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(27);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(28);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(32);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(79);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(87);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var BreadcrumbNode = function (_Component) {
+	  (0, _inherits3.default)(BreadcrumbNode, _Component);
+
+	  function BreadcrumbNode() {
+	    (0, _classCallCheck3.default)(this, BreadcrumbNode);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(BreadcrumbNode).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(BreadcrumbNode, [{
+	    key: "render",
+	    value: function render() {
+
+	      if (this.props.last !== true) {
+	        return _react2.default.createElement(
+	          "div",
+	          null,
+	          _react2.default.createElement(
+	            "a",
+	            { href: this.props.url },
+	            this.props.name
+	          ),
+	          _react2.default.createElement(
+	            "span",
+	            null,
+	            "\"   /   \""
+	          )
+	        );
+	      } else {
+	        return _react2.default.createElement(
+	          "span",
+	          { className: "last" },
+	          this.props.name
+	        );
+	      }
+	    }
+	  }]);
+	  return BreadcrumbNode;
+	}(_react.Component);
+
+	exports.default = BreadcrumbNode;
+	module.exports = exports["default"];
 
 /***/ }
 /******/ ]);
