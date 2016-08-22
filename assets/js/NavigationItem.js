@@ -4,14 +4,14 @@ import ItemTypes from './ItemTypes';
 import { DragSource, DropTarget } from 'react-dnd';
 
 const style = {
-  border: '1px dashed gray',
+  border: '1px solid gray',
   padding: '0.5rem 1rem',
   marginBottom: '.5rem',
   backgroundColor: 'white',
   cursor: 'move'
 };
 
-const cardSource = {
+const itemSource = {
   beginDrag(props) {
     return {
       id: props.id,
@@ -20,10 +20,12 @@ const cardSource = {
   }
 };
 
-const cardTarget = {
+const itemTarget = {
   hover(props, monitor, component) {
     const dragIndex = monitor.getItem().index;
+    const dragType = monitor.getItem().itemType;
     const hoverIndex = props.index;
+    console.log(props);
 
     // Don't replace items with themselves
     if (dragIndex === hoverIndex) {
@@ -57,7 +59,7 @@ const cardTarget = {
     }
 
     // Time to actually perform the action
-    props.moveCard(dragIndex, hoverIndex);
+    props.moveItem(dragIndex, hoverIndex, dragType);
 
     // Note: we're mutating the monitor item here!
     // Generally it's better to avoid mutations,
@@ -67,14 +69,14 @@ const cardTarget = {
   }
 };
 
-@DropTarget(ItemTypes.CARD, cardTarget, connect => ({
+@DropTarget(ItemTypes.NAVNODE, itemTarget, connect => ({
   connectDropTarget: connect.dropTarget()
 }))
-@DragSource(ItemTypes.CARD, cardSource, (connect, monitor) => ({
+@DragSource(ItemTypes.NAVNODE, itemSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
   isDragging: monitor.isDragging()
 }))
-export default class Card extends Component {
+export default class NavigationItem extends Component {
   static propTypes = {
     connectDragSource: PropTypes.func.isRequired,
     connectDropTarget: PropTypes.func.isRequired,
@@ -82,7 +84,8 @@ export default class Card extends Component {
     isDragging: PropTypes.bool.isRequired,
     id: PropTypes.any.isRequired,
     text: PropTypes.string.isRequired,
-    moveCard: PropTypes.func.isRequired
+    moveItem: PropTypes.func.isRequired,
+    itemType: PropTypes.string.isRequired,
   };
 
   render() {

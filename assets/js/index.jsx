@@ -1,25 +1,41 @@
 import React, { Component } from 'react';
-import Container from './Container';
 import ReactDOM from 'react-dom';
 
+import NavigationContainer from './NavigationContainer';
 
-export default class SortableSimple extends Component {
-  render() {
-    return (
-      <div>
-        <p>
-          <b><a href='https://github.com/gaearon/react-dnd/tree/master/examples/04%20Sortable/Simple'>Browse the Source</a></b>
-        </p>
-        <p>
-          It is easy to implement a sortable interface with React DnD. Just make the same component both a drag source and a drop target, and reorder the data in the <code>hover</code> handler.
-        </p>
-        <Container />
-      </div>
-    );
-  }
-}
+let tree = {
+  items: [{
+    id: 1,
+    text: 'HelloItem'
+  }, {
+    id: 2,
+    text: 'About',
+  }, {
+    id: 3,
+    text: 'SimpleItem'
+  }]
+};
+
+let availableItems = {
+  items: [{
+    id: 1,
+    text: 'HelloItemAvailable'
+  }, {
+    id: 2,
+    text: 'AboutAvailable',
+  }, {
+    id: 3,
+    text: 'SimpleItemAvailable'
+  }]
+};
+
+ReactDOM.render(
+<NavigationContainer tree={tree} availableItems={availableItems}/>,
+document.getElementById('container-sortable'))
+
+
 
 import Breadcrumbs from './Breadcrumbs'
 
 ReactDOM.render(<Breadcrumbs crumbs={[{name: 'Hel1', 'url': 'hhh'}, {name: 'Hel2', 'url': 'hhh2'}, {name: 'Hel3', 'url': 'hhh3'}]} />,
-    document.getElementById('container'))
+document.getElementById('container'))
