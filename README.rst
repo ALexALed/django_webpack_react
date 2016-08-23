@@ -14,3 +14,9 @@ http://geezhawk.github.io/using-react-with-django-rest-framework
 12. ./node_modules/.bin/webpack --config webpack.config.js
 13. pip install django-webpack-loader
 14. INSTALLED_APPS webpack_loader
+
+
+cd ~/dev/django_webpack_react/
+source .env/bin/activate
+
+webpack watch mode >> webpack --progress --colors --watch

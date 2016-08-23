@@ -3,29 +3,46 @@ import ReactDOM from 'react-dom';
 
 import NavigationContainer from './NavigationContainer';
 
-let tree = {
-  items: [{
-    id: 1,
-    text: 'HelloItem'
-  }, {
-    id: 2,
-    text: 'About',
-  }, {
-    id: 3,
-    text: 'SimpleItem'
-  }]
+let tree = {"root":
+  [
+    {"slug": "blue-socks-and-shorts",
+    "title": "Blue socks and shorts",
+    "base_item_id": 1,
+    "items": []},
+    {"slug": "test-name-third",
+    "title": "test name second",
+    "base_item_id": 8,
+    "items": [
+      {"slug": "/about/unisport",
+      "title": "About Unisport",
+      "base_item_id": 4,
+      "items": [
+        {"slug": "/1about/unisport",
+        "title": "1About Unisport",
+        "base_item_id": 34, "items": []},
+        {"slug": "/2about/unisport1",
+        "title": "2About Unisport1",
+        "base_item_id": 76, "items": []}
+      ]},
+      {"slug": "/about/unisport1",
+      "title": "About Unisport1",
+      "base_item_id": 56, "items": []}
+    ]}]
 };
 
 let availableItems = {
   items: [{
-    id: 1,
-    text: 'HelloItemAvailable'
+    base_item_id: 7,
+    title: 'HelloItemAvailable',
+    slug: 'halilo'
   }, {
-    id: 2,
-    text: 'AboutAvailable',
+    base_item_id: 5,
+    title: 'AboutAvailable',
+    slug: 'halilo5'
   }, {
-    id: 3,
-    text: 'SimpleItemAvailable'
+    base_item_id: 9,
+    title: 'SimpleItemAvailable',
+    slug: 'halilo7'
   }]
 };
 
@@ -34,8 +51,8 @@ ReactDOM.render(
 document.getElementById('container-sortable'))
 
 
-
-import Breadcrumbs from './Breadcrumbs'
-
-ReactDOM.render(<Breadcrumbs crumbs={[{name: 'Hel1', 'url': 'hhh'}, {name: 'Hel2', 'url': 'hhh2'}, {name: 'Hel3', 'url': 'hhh3'}]} />,
-document.getElementById('container'))
+//
+// import Breadcrumbs from './Breadcrumbs'
+//
+// ReactDOM.render(<Breadcrumbs crumbs={[{name: 'Hel1', 'url': 'hhh'}, {name: 'Hel2', 'url': 'hhh2'}, {name: 'Hel3', 'url': 'hhh3'}]} />,
+// document.getElementById('container'))

@@ -18,55 +18,76 @@ export default class NavigationContainer extends Component {
     this.state = {
       tree: this.props.tree,
       availableItems: this.props.availableItems};
-  }
+    }
 
-  moveItem(dragIndex, hoverIndex, dragType) {
-    const { tree } = this.state;
-    const { availableItems } = this.state;
-    console.log(dragType);
-    const dragItem = items[dragIndex];
+    addItemToTree(item){
+      let currentState = this.state;
+      currentState.tree.push()
+    }
 
-    this.setState(update(this.state, {
-      items: {
-        $splice: [
-          [dragIndex, 1],
-          [hoverIndex, 0, dragItem]
-        ]
+    moveItem(dragItem, hoverItem) {
+      const { tree } = this.state;
+      const { availableItems } = this.state;
+
+      if (dragItem.itemType == "available"){
+        const dragItemValue = availableItems[dragItem.index];
+        this.setState(update(this.state.availableItems.items, {
+          items: {
+            $splice: [
+              [dragItem.index, 1],
+              [hoverItem.index, 0, dragItemValue]
+            ]
+          }
+        }));
+      }else{
+        const dragItemValue = tree[dragItem.index];
+        this.setState(update(this.state.tree.items, {
+          items: {
+            $splice: [
+              [dragItem.index, 1],
+              [hoverItem.index, 0, dragItemValue]
+            ]
+          }
+        }));
       }
-    }));
+    }
+
+    render() {
+      const treeItems = this.state.tree.root;
+      const availableItems = this.state.availableItems.items;
+      let children = [];
+      return (
+        <div><div id="tree" style={style}>
+        {treeItems.map((item, i) => {
+          return <NavigationItem key={item.base_item_id}
+          index={item.base_item_id}
+          base_item_id={item.base_item_id}
+          title={item.title}
+          slug={item.slug}
+          moveItem={this.moveItem}
+          itemType="tree"
+          children={item.items}>
+          </NavigationItem>
+
+          })}</div>
+
+          <h3>Available</h3>
+          <div>
+          </div>
+        </div>
+      );
+    }
   }
 
-  render() {
-    const tree = this.state.tree.items;
-    const availableItems = this.state.availableItems.items;
-    return (
-      <div>
-      <div id="tree" style={style}>
-        {tree.map((item, i) => {
-          return (
-            <NavigationItem key={item.id}
-                  index={i}
-                  id={item.id}
-                  text={item.text}
-                  moveItem={this.moveItem}
-                  itemType="tree"/>
-          );
-        })}
-      </div>
-      <h3>Available</h3>
-      <div>
-      {availableItems.map((item, i) => {
-        return (
-          <NavigationItem key={item.id}
-                index={i}
-                id={item.id}
-                text={item.text}
-                moveItem={this.moveItem}
-                itemType="available"/>
-        );
-      })}
-      </div>
-      </div>
-    );
-  }
-}
+
+  //{availableItems.map((item, i) => {
+  //   return (
+  //     <NavigationItem key={item.id}
+  //           index={i}
+  //           base_item_id={item.base_item_id}
+  //           title={item.title}
+  //           slug={item.slug}
+  //           moveItem={this.moveItem}
+  //           itemType="available"/>
+  //   );
+  // })}
