@@ -19,4 +19,4 @@ http://geezhawk.github.io/using-react-with-django-rest-framework
 cd ~/dev/django_webpack_react/
 source .env/bin/activate
 
-webpack watch mode >> webpack --progress --colors --watch
+webpack watch mode >> webpack --progress --colors --watch -d

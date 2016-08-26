@@ -14,7 +14,15 @@ const source = {
 
   isDragging(props, monitor) {
     return props.base_item_id == monitor.getItem().base_item_id
+  },
+
+  
+  endDrag(props, monitor, component) {
+    if (!monitor.didDrop()) {
+      return;
+    }
   }
+
 }
 
 const target = {
@@ -58,21 +66,21 @@ export default class NavigationItem extends Component {
 
     return connectDropTarget(connectDragPreview(
       <div>
-        {connectDragSource(
-          <div style={{
-            background: 'white',
-            border: '1px solid #ccc',
-            padding: '1em',
-            marginBottom: -1
-          }}
-          >{title}</div>
-        )}
-        <NavigationTree
-          parent={base_item_id}
-          items={items}
-          move={move}
-          find={find}
-        />
+      {connectDragSource(
+        <div style={{
+          background: 'white',
+          border: '1px solid #ccc',
+          padding: '1em',
+          marginBottom: -1
+        }}
+        >{title}</div>
+      )}
+      <NavigationTree
+      parent={this.props.base_item_id}
+      items={items}
+      move={move}
+      find={find}
+      />
       </div>
     ))
   }
