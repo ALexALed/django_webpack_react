@@ -4,11 +4,6 @@ import NavigationItem from './NavigationItem'
 import ItemTypes from './ItemTypes';
 
 const target = {
-	drop() {
-		
-
-	},
-
 	hover(props, monitor) {
 		const {base_item_id: draggedId, parent, items} = monitor.getItem()
 
@@ -43,8 +38,7 @@ export default class NavigationTree extends Component {
 				minHeight: 10,
 				paddingTop: 10,
 				marginTop: -11,
-				marginLeft: '2em',
-				borderRadius: 4
+				marginLeft: '2em'
 			}}>
 				{items && items.map((item, i) => {
 					return <NavigationItem key={item.base_item_id} base_item_id={item.base_item_id} parent={parent} item={item} move={move} find={find}/>

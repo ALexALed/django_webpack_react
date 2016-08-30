@@ -77,9 +77,9 @@ export default class NavigationItem extends Component {
 				{connectDragSource(
 					<div style={{
 						background: 'white',
-						border: '1px solid #0abf5a',
+						border: '2px solid #0abf5a',
 						padding: '1em',
-						marginBottom: -1
+            marginBottom: -1
 					}}>{title}</div>
 				)}
           <NavigationTree parent={this.props.base_item_id} items={items} move={move} find={find}/>

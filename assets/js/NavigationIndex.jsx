@@ -14,7 +14,7 @@ export default class NavigationIndex extends Component {
         this.state = {tree: props.tree['tree'], 'available': props.available['items']};
     }
 
-    moveItem(id, afterId, nodeId, targetSlug) {
+    moveItem(id, afterId, nodeId, targetSlug, moveAfterRelease=false) {
         if (id == afterId) {
             return
         }
@@ -54,18 +54,23 @@ export default class NavigationIndex extends Component {
         }
 
         let dest = null
+
         if(targetSlug=='available'){
             dest = available
         }else{
-          dest = nodeId
+            dest = nodeId
                   ? this.findItem(nodeId, tree).items
                   : tree
-
         }
 
         if(!dest){
           dest = available
         }
+
+        if((dest == available) && (!moveAfterRelease)){
+          return
+        }
+
         if(!dest){
           return
         }
@@ -80,27 +85,30 @@ export default class NavigationIndex extends Component {
         }
 
         if(isFromAvailable){
-            removeNode(id, available)
+          removeNode(id, available)
         }
 
         this.setState({tree: tree, available: available})
     }
 
     findItem(id, items) {
+
+        for (const node of items) {
+            if (node.base_item_id == id)
+                return node
+            if (node.items && node.items.length) {
+                const result = this.findItem(id, node.items)
+                if (result) {
+                    return result
+                }
+            }
+        }
+        return false
+
       if(!items){
         return false
       }
-      for (const node of items) {
-          if (node.base_item_id == id)
-              return node
-          if (node.items && node.items.length) {
-              const result = this.findItem(id, node.items)
-              if (result) {
-                  return result
-              }
-          }
-      }
-      return false
+
     }
 
     render() {

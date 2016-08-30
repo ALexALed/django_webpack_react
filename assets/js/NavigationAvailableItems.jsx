@@ -5,19 +5,14 @@ import ItemTypes from './ItemTypes';
 
 const target = {
   drop(props, monitor, component) {
-
-  },
-
-  hover(props, monitor) {
-    console.log(monitor.getItem())
     const {base_item_id: draggedId, parent, items} = monitor.getItem()
 
-    if (!monitor.isOver({shallow: true})) return
-
-    const descendantNode = props.find(props.parent, items)
-    if (descendantNode) return
-
-    props.move(draggedId, props.base_item_id, props.parent, 'available')
+    // if (!monitor.isOver({shallow: true})) return
+    //
+    // const descendantNode = props.find(props.parent, items)
+    // if (descendantNode) return
+    console.log(monitor.getItem())
+    props.move(draggedId, props.base_item_id, props.parent, 'available', true)
   }
 }
 
