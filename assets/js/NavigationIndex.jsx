@@ -79,7 +79,6 @@ export default class NavigationIndex extends Component {
             dest.splice(index, 0, item)
         }
 
-
         if(isFromAvailable){
             removeNode(id, available)
         }
