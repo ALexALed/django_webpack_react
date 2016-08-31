@@ -1,15 +1,15 @@
 {% load render_bundle from webpack_loader %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
-<div id="container"></div>
-<div id="container-sortable"></div>
-<h3>This is available</h3>
-<div id="container-available"></div>
-  {% render_bundle 'main' %}
+    <div id="container-sortable"></div>
+    {% render_bundle 'main' %}
 </body>
+
 </html>

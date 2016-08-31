@@ -33,8 +33,12 @@ const target = {
 			return
 		if (!monitor.isOver({shallow: true}))
 			return
+		try{
+				props.move(draggedId, overId, props.parent, 'tree')
+		}catch(e){
+			
+		}
 
-		props.move(draggedId, overId, props.parent, 'tree')
 	}
 }
 
@@ -54,6 +58,10 @@ export default class NavigationItem extends Component {
 		move: PropTypes.func,
 		find: PropTypes.func
 	};
+
+	getItemLink(){
+		return  `/navigation/item/${this.props.base_item_id}`
+	}
 
 	render() {
 		const {
@@ -75,12 +83,12 @@ export default class NavigationItem extends Component {
 		return connectDropTarget(connectDragPreview(
 			<div>
 				{connectDragSource(
-					<div style={{
+					<div className='nav-item' style={{
 						background: 'white',
 						border: '2px solid #0abf5a',
 						padding: '1em',
             marginBottom: -1
-					}}>{title}</div>
+					}}><a href={this.getItemLink()}>{title}</a></div>
 				)}
           <NavigationTree parent={this.props.base_item_id} items={items} move={move} find={find}/>
 			</div>

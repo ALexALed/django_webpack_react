@@ -4,6 +4,11 @@ import NavigationItem from './NavigationItem'
 import ItemTypes from './ItemTypes';
 
 const target = {
+
+	canDrop() {
+		return true
+	},
+
 	hover(props, monitor) {
 		const {base_item_id: draggedId, parent, items} = monitor.getItem()
 
